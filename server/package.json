@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only --exit-child index.ts",
-    "db:migrate": "npx prisma generate",
+    "db:generate": "npx prisma generate",
     "db:push": "npx prisma db push"
   },
   "compilerOptions": {
