@@ -1,10 +1,5 @@
 # Running the Client and Server Locally
 
-## Prerequisites
-
-- Node.js (v16 or higher)
-- npm (v7 or higher)
-
 ## Setup
 
 ### 1. Clone the repository
