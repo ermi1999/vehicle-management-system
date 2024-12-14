@@ -2,14 +2,22 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const prisma = new PrismaClient();
 const app = express();
 
-app.use(cors());
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+
+app.use(
+  cors({
+    origin: frontendUrl,
+  })
+);
 app.use(bodyParser.json());
 
-// Fetch all vehicles
 app.get("/vehicles", async (req, res) => {
   try {
     const vehicles = await prisma.vehicle.findMany();
@@ -19,7 +27,6 @@ app.get("/vehicles", async (req, res) => {
   }
 });
 
-// Add a new vehicle
 app.post("/vehicles", async (req, res) => {
   const { name, status } = req.body;
   try {
@@ -32,7 +39,6 @@ app.post("/vehicles", async (req, res) => {
   }
 });
 
-// Update vehicle status
 app.put("/vehicles/:id", async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -47,7 +53,6 @@ app.put("/vehicles/:id", async (req, res) => {
   }
 });
 
-// Start server
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
