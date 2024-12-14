@@ -1,5 +1,9 @@
 # Running the Client and Server Locally
 
+## Prerequisites
+
+- Node.js (v19 or higher)
+
 ## Setup
 
 ### 1. Clone the repository
